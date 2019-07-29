@@ -28,3 +28,5 @@ date || credit || debit || balance
 
 Bank - single class
 Basic functionality - Bank is launched in an empty state, prints out an empty dated statement
+Creating a Date helper to use in both tests and code
+Test for the date helper
