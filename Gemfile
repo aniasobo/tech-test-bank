@@ -2,7 +2,9 @@
 
 source "https://rubygems.org"
 
-gem 'rspec'
 gem 'date'
-
-# gem "rails"
+gem 'rake'
+gem 'rspec'
+gem 'rubocop'
+gem 'simplecov'
+gem 'simplecov-console'

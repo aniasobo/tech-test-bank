@@ -30,3 +30,5 @@ Bank - single class
 Basic functionality - Bank is launched in an empty state, prints out an empty dated statement
 Creating a Date helper to use in both tests and code
 Test for the date helper
+Statement method - returns from other methods: adds header, history formatted
+simple methods first going by the scenario from spec: deposit, withdrawal
