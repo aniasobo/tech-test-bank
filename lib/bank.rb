@@ -10,14 +10,18 @@ class Bank
     save_to_history
   end
 
+  def print_balance
+    add_trailing_zeroes(@balance)
+  end
+
   def deposit(amount)
     @balance += amount
-    save_to_history(credit: amount)
+    save_to_history(credit: add_trailing_zeroes(amount))
   end
 
   def withdraw(amount)
     @balance -= amount
-    save_to_history(debit: amount)
+    save_to_history(debit: add_trailing_zeroes(amount))
   end
 
   def print_statement
@@ -31,13 +35,18 @@ class Bank
     # adding day's date
     statement_line << Today.print_formatted
     # adding credit
-    statement_line << credit == nil ? '' : credit.to_f
+    statement_line << credit == nil ? '' : credit
     # adding debit
-    statement_line << debit == nil ? '' : debit.to_f
+    statement_line << debit == nil ? '' : debit
     # adding day's balance
-    statement_line << @balance.to_s
+    statement_line << print_balance
     # adding formatted line
     @history << statement_line.join(' || ')
   end
+
+  def add_trailing_zeroes(num)
+    '%.2f' % num
+  end
+
 
 end
