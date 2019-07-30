@@ -51,7 +51,7 @@ RSpec.describe Bank do
     it 'prints a formatted statement with many transactions' do
       @bank.deposit(20)
       @bank.withdraw(3) # 117
-      expect(@bank.print_statement).to eq "date || credit || debit || balance\n#{@days_date} ||  ||  || 0.00"
+      expect(@bank.print_statement).to eq "date || credit || debit || balance\n#{@days_date} ||  ||  || 100.00\n#{@days_date} || 20.00 ||  || 120.00\n#{@days_date} ||  || 3.00 || 117.00"
     end
   end
 end
