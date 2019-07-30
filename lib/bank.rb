@@ -48,5 +48,4 @@ class Bank
     '%.2f' % num
   end
 
-
 end
