@@ -3,20 +3,34 @@
 ## How to use
 
 1. clone/download this repo
-2. in the project directory, run `bundle install` 
-3. to open a new bank, run `Bank.new(sum)` in your terminal, replacing the sum with your starting balance; otherwise it will default to 0
-4. To make a deposit, use `bank.deposit(sum)`
-5. To withdraw, use `bank.withdraw(sum)`
-6. To view your full dated statement, run `bank.print_statement`
-7. You can also view your balance alone with `bank.print_balance`
+2. go to the `lib/bank.rb` file and comment out the top line (you'll need to uncomment it to run the tests)
+3. open irb, requiring both the `date_helper.rb` and the `bank.rb` file, like so:
+
+```
+$ irb
+$ require_relative './lib/date_helper.rb'
+ => true 
+$ require_relative './lib/bank.rb'
+ => true 
+```
+
+4. to open a new bank, run `Bank.new(sum)` in your terminal, replacing the sum with your starting balance; otherwise it will default to 0
+5. To make a deposit, use `bank.deposit(sum)`
+6. To withdraw, use `bank.withdraw(sum)`
+7. To view your full dated statement, run `bank.print_statement`
+8. You can also view your balance alone with `bank.print_balance`
+
+**See it in action!**
+
+![app screenshot](irbBank.png)
+
 
 ### To run tests
 
-`rspec` - should also display test coverage
-
-**To run linting**
-
-`rubocop`
+1. in the project directory, run `bundle install`
+2. run `rspec` - should also display test coverage
+3. To run linting: run `rubocop`
+4. in case of an error, make sure the top line in `bank.rb` is not commented out
 
 
 ## Functionality
