@@ -1,5 +1,24 @@
 # Bank tech test
 
+## How to use
+
+1. clone/download this repo
+2. in the project directory, run `bundle install` 
+3. to open a new bank, run `Bank.new(sum)` in your terminal, replacing the sum with your starting balance; otherwise it will default to 0
+4. To make a deposit, use `bank.deposit(sum)`
+5. To withdraw, use `bank.withdraw(sum)`
+6. To view your full dated statement, run `bank.print_statement`
+7. You can also view your balance alone with `bank.print_balance`
+
+### To run tests
+
+`rspec` - should also display test coverage
+
+**To run linting**
+
+`rubocop`
+
+
 ## Functionality
 
 - REPL app but no need for a command line interface
@@ -24,11 +43,12 @@ date || credit || debit || balance
 ```
 
 
-### Initial planning:
+### Initial approach:
 
-Bank - single class
-Basic functionality - Bank is launched in an empty state, prints out an empty dated statement
-Creating a Date helper to use in both tests and code
-Test for the date helper
-Statement method - returns from other methods: adds header, history formatted
-simple methods first going by the scenario from spec: deposit, withdrawal
+Bank - single class  
+Basic functionality - Bank is launched in an empty state, prints out an empty dated statement  
+Creating a Date helper to use in both tests and code  
+Test for the date helper  
+Statement method - returns from other methods: adds header, history formatted  
+simple methods first going by the scenario from spec: deposit, withdrawal  
+added private methods to format and return numbers with trailing zeroes  
