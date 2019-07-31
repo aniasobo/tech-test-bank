@@ -23,7 +23,7 @@ class Statement
 
   private
 
-  def add_trailing_zeroes(num)
+  def self.add_trailing_zeroes(num)
     num.nil? ? num = "0.00" : '%.2f' % num 
   end
 
