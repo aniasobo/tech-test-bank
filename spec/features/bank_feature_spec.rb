@@ -1,8 +1,8 @@
 require 'bank'
 require 'date_helper'
 
-feature "Bank does as a bank does" do
-  scenario 'no money in the bank' do
+describe Bank do
+  context 'no money in the bank' do
     before :each do
       @bank = Bank.new
     end
@@ -12,46 +12,60 @@ feature "Bank does as a bank does" do
     end
 
     it 'launches with default balance of none' do
-      expect(@bank.print_balance).to eq "0.00"
+      expect do
+        @bank.account_statement
+      end.to output(/0.00/).to_stdout
     end
 
     it 'prints out empty statement' do
       days_date = Today.print_formatted
-      expect(@bank.print_statement).to eq "date || credit || debit || balance\n#{days_date} ||  ||  || 0.00"
+      expect do
+        @bank.account_statement
+      end.to output("date || credit || debit || balance\n#{days_date} || 0.00 ||  || 0.00\n").to_stdout
     end
   end
 
-  scenario 'money in da bank' do
+  context 'money in the bank' do
     before :each do
       @bank = Bank.new(100)
       @days_date = Today.print_formatted
     end
   
     it 'launches with given balance which is formatted correctly' do
-      expect(@bank.print_balance).to eq "100.00"
+      expect do
+        @bank.account_statement
+      end.to output(/100.00/).to_stdout
     end
 
     it 'increases balance by deposit amount' do
       @bank.deposit(100)
-      expect(@bank.print_balance).to eq "200.00"
+      expect do
+        @bank.account_statement
+      end.to output(/200.00/).to_stdout
     end
 
     it 'decreases balance by debit amount' do
       @bank.withdraw(30)
-      expect(@bank.print_balance).to eq "70.00"
+      expect do
+        @bank.account_statement
+      end.to output(/70.00/).to_stdout
     end
 
     it 'keeps track of multiple transactions' do
       @bank.deposit(2000)
       @bank.deposit(15555)
       @bank.withdraw(3)
-      expect(@bank.print_balance).to eq "17652.00"
+      expect do
+        @bank.account_statement
+      end.to output(/17652.00/).to_stdout
     end
 
     it 'prints a formatted statement with many transactions' do
       @bank.deposit(20)
-      @bank.withdraw(3) # 117
-      expect(@bank.print_statement).to eq "date || credit || debit || balance\n#{@days_date} ||  ||  || 100.00\n#{@days_date} || 20.00 ||  || 120.00\n#{@days_date} ||  || 3.00 || 117.00"
+      @bank.withdraw(3)
+      expect do
+        @bank.account_statement
+      end.to output("date || credit || debit || balance\n#{@days_date} || 100.00 ||  || 100.00\n#{@days_date} || 20.00 ||  || 120.00\n#{@days_date} ||  || 3.00 || 117.00\n").to_stdout    
     end
   end
 end

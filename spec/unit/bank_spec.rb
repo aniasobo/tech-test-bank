@@ -50,6 +50,20 @@ RSpec.describe Bank do
       expect(@bank.balance).to eq(9)
     end
 
+    describe '.add_trailing_zeroes' do
+      it 'formats floats' do
+        expect(add_trailing_zeroes(1.0)).to eq("1.00")
+      end
+  
+      it 'formats non-floats' do
+        expect(add_trailing_zeroes(1)).to eq("1.00")
+      end
+  
+      it 'returns 0.00 when nil' do
+        expect(add_trailing_zeroes(nil)).to eq("0.00")
+      end
+    end  
+    
     xit 'throws error at attempts to exceed balance zero'
   end
 end
