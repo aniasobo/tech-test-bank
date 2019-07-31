@@ -6,7 +6,8 @@ class Bank
 
   def initialize(balance = 0, history = Statement)
     @balance = balance
-    @history = history.new(@balance)
+    @history = history
+    @history.begin_history(@balance)
   end
 
   def deposit(amount)

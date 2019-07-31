@@ -2,17 +2,17 @@ require_relative 'date_helper.rb'
 
 class Statement
 
-  def initialize(balance, current_date = Today)
+  def self.begin_history(balance, current_date = Today)
     @history = [["date || credit || debit || balance"]]
     @current_date = current_date
     save_to_history(date: current_date, credit: balance, debit: nil, balance: balance)
   end
 
-  def print_statement
+  def self.print_statement
     @history.join("\n")
   end
 
-  def save_to_history(date: @current_date, credit: nil, debit: nil, balance: nil) 
+  def self.save_to_history(date: @current_date, credit: nil, debit: nil, balance: nil) 
     statement_line = []
     statement_line << @current_date.print_formatted
     statement_line << credit == nil ? '' : add_trailing_zeroes(credit)
