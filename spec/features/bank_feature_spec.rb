@@ -5,6 +5,7 @@ describe Bank do
   context 'no money in the bank' do
     before :each do
       @bank = Bank.new
+      @days_date = Today.print_formatted
     end
 
     it 'launches in an empty state' do
@@ -14,14 +15,13 @@ describe Bank do
     it 'launches with default balance of none' do
       expect do
         @bank.account_statement
-      end.to output(/0.00/).to_stdout
+      end.to output("date || credit || debit || balance\n#{@days_date} || 0.00 || || 0.00\n").to_stdout
     end
 
     it 'prints out empty statement' do
-      days_date = Today.print_formatted
       expect do
         @bank.account_statement
-      end.to output("date || credit || debit || balance\n#{days_date} || 0.00 ||  || 0.00\n").to_stdout
+      end.to output("date || credit || debit || balance\n#{@days_date} || 0.00 || || 0.00\n").to_stdout
     end
   end
 
@@ -34,21 +34,21 @@ describe Bank do
     it 'launches with given balance which is formatted correctly' do
       expect do
         @bank.account_statement
-      end.to output(/100.00/).to_stdout
+      end.to output("date || credit || debit || balance\n#{@days_date} || 100.00 || || 100.00\n").to_stdout
     end
 
     it 'increases balance by deposit amount' do
       @bank.deposit(100)
       expect do
         @bank.account_statement
-      end.to output(/200.00/).to_stdout
+      end.to output("date || credit || debit || balance\n#{@days_date} || 100.00 || || 100.00\n#{@days_date} || 100.00 || || 200.00\n").to_stdout
     end
 
     it 'decreases balance by debit amount' do
       @bank.withdraw(30)
       expect do
         @bank.account_statement
-      end.to output(/70.00/).to_stdout
+      end.to output("date || credit || debit || balance\n#{@days_date} || 100.00 || || 100.00\n#{@days_date} || || 30.00 || 70.00\n").to_stdout
     end
 
     it 'keeps track of multiple transactions' do
@@ -65,7 +65,7 @@ describe Bank do
       @bank.withdraw(3)
       expect do
         @bank.account_statement
-      end.to output("date || credit || debit || balance\n#{@days_date} || 100.00 ||  || 100.00\n#{@days_date} || 20.00 ||  || 120.00\n#{@days_date} ||  || 3.00 || 117.00\n").to_stdout    
+      end.to output("date || credit || debit || balance\n#{@days_date} || 100.00 || || 100.00\n#{@days_date} || 20.00 || || 120.00\n#{@days_date} || || 3.00 || 117.00\n").to_stdout    
     end
   end
 end
