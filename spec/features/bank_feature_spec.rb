@@ -12,12 +12,6 @@ describe Bank do
       expect(@bank).to be_a(Bank)
     end
 
-    it 'launches with default balance of none' do
-      expect do
-        @bank.account_statement
-      end.to output("date || credit || debit || balance\n#{@days_date} || 0.00 || || 0.00\n").to_stdout
-    end
-
     it 'prints out empty statement' do
       expect do
         @bank.account_statement
